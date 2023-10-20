@@ -102,6 +102,7 @@ button.addEventListener('click', ()=>{
    diagnostico.style.display="flex";
 
    diagnostico.innerHTML=Diagnostic();
+   console.log(puntuacion);
   }
 });
 
@@ -122,10 +123,15 @@ function CalcularResultats(array:Object[])
       let nombreSeparados = nombre.split('-');
       let numeroSeparados = numero.split('-');
       let posicio = 0;
-      if (nombreSeparados[posicio] == numeroSeparados[posicio] && nombreSeparados[posicio + 1] == numeroSeparados[posicio + 1]) puntuacion += 0;
-      else if (nombreSeparados[posicio] == numeroSeparados[posicio] && nombreSeparados[posicio + 1] != numeroSeparados[posicio + 1]) puntuacion += 10000;
-      else if (nombreSeparados[posicio] != numeroSeparados[posicio] && nombreSeparados[posicio + 1] == numeroSeparados[posicio + 1]) puntuacion += 1000;
-      else puntuacion += 100000;
+      if (nombreSeparados[posicio] == numeroSeparados[posicio] && nombreSeparados[posicio + 1] == numeroSeparados[posicio + 1]){
+        puntuacion += 0;
+      }else if (nombreSeparados[posicio] == numeroSeparados[posicio] && nombreSeparados[posicio + 1] != numeroSeparados[posicio + 1]){
+        puntuacion += 10000;
+      }else if (nombreSeparados[posicio] != numeroSeparados[posicio] && nombreSeparados[posicio + 1] == numeroSeparados[posicio + 1]){
+         puntuacion += 1000;
+      }else{
+        puntuacion += 100000;
+      } 
     }
   });
 }
