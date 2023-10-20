@@ -1,6 +1,7 @@
 import '../style.css'
 import { Question } from './question.ts'
 
+const {BASE_URL} = import.meta.env;
 
 const button=document.getElementById('next') as HTMLButtonElement;
 const reload=document.getElementById('reload') as HTMLButtonElement;
@@ -80,11 +81,11 @@ button.addEventListener('click', ()=>{
       
       array.forEach((element: any) => {
           if(element.Id==count){
-              imagen.src=`./public/${element.Image}`; 
+              imagen.src=`${BASE_URL}${element.Image}`; 
               if(element.Deshabilitado==true){
                 dropdown1.style.display="none"
               }else{
-                dropdown1.disabled=false;
+                dropdown1.style.display="flex"
               }
               
           }
