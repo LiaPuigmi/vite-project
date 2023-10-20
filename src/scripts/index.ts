@@ -70,7 +70,7 @@ button.addEventListener('click', ()=>{
     button.innerHTML='NEXT';
     firstTime=false;
   }
-  if(count<25){
+  if(count<26){
     count++;
       if( dropdown1.style.display=="flex"){
           solucion=value1+'-'+value2;
@@ -92,17 +92,23 @@ button.addEventListener('click', ()=>{
           if(element.Id==(count-1)){
             element.Respuesta=solucion;
               console.log(element)
+              console.log(count);
+              if(count==26){
+                imagen.src=`${BASE_URL}/title.jpg`;
+                CalcularResultats(array);
+                button.style.display="none";
+                reload.style.display="flex";
+                dropdown1.style.display="none"
+                dropdown2.style.display="none"
+                diagnostico.style.display="flex";
+
+                diagnostico.innerHTML=Diagnostic();
+                console.log(puntuacion);
+              }
           }
+          
       });
 
-  }else{
-   CalcularResultats(array);
-   button.style.display="none";
-   reload.style.display="flex";
-   diagnostico.style.display="flex";
-
-   diagnostico.innerHTML=Diagnostic();
-   console.log(puntuacion);
   }
 });
 
@@ -111,6 +117,7 @@ button.addEventListener('click', ()=>{
 function CalcularResultats(array:Object[])
 {
   array.forEach((element: any) => {
+    console.log(element);
     if(element.Id<=21){
       if(element.CorrectValue!=element.Respuesta){
         puntuacion+=10;
@@ -122,6 +129,8 @@ function CalcularResultats(array:Object[])
       let numero=element.Respuesta;
       let nombreSeparados = nombre.split('-');
       let numeroSeparados = numero.split('-');
+      console.log(nombreSeparados);
+      console.log(numeroSeparados);
       let posicio = 0;
       if (nombreSeparados[posicio] == numeroSeparados[posicio] && nombreSeparados[posicio + 1] == numeroSeparados[posicio + 1]){
         puntuacion += 0;
