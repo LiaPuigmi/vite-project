@@ -128,8 +128,7 @@ function CalcularResultats(array:Object[])
   });
 }
 
-function Diagnostic()
-{
+function Diagnostic(){
     let diagnostic:string;
     if (puntuacion >= 0 && puntuacion <= 20) diagnostic = "Bona visió";
     else if (puntuacion > 20 && puntuacion <= 80) diagnostic = "Visió lleument afectada, possible daltonisme";
