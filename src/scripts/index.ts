@@ -1,6 +1,5 @@
 import '../style.css'
 import { Question } from './question.ts'
-
 const {BASE_URL} = import.meta.env;
 
 const button=document.getElementById('next') as HTMLButtonElement;
@@ -53,17 +52,13 @@ array=[question1,question2,question3,question4,question5, question6,question7,
 
 dropdown1.addEventListener("change", function() {
   value1=this.value;
-  
 });
 
 dropdown2.addEventListener("change", function() {
   value2=this.value;
- 
 });
 
-
 button.addEventListener('click', ()=>{
-
   if(firstTime){
     dropdown1.style.display="flex";
     dropdown2.style.display="flex";
@@ -77,7 +72,6 @@ button.addEventListener('click', ()=>{
       }else{
           solucion=value2;
       } 
-      console.log('entro');
       
       array.forEach((element: any) => {
           if(element.Id==count){
@@ -91,8 +85,6 @@ button.addEventListener('click', ()=>{
           }
           if(element.Id==(count-1)){
             element.Respuesta=solucion;
-              console.log(element)
-              console.log(count);
               if(count==26){
                 imagen.src=`${BASE_URL}/title.jpg`;
                 CalcularResultats(array);
@@ -101,23 +93,16 @@ button.addEventListener('click', ()=>{
                 dropdown1.style.display="none"
                 dropdown2.style.display="none"
                 diagnostico.style.display="flex";
-
                 diagnostico.innerHTML=Diagnostic();
-                console.log(puntuacion);
               }
           }
-          
       });
-
   }
 });
-
-
 
 function CalcularResultats(array:Object[])
 {
   array.forEach((element: any) => {
-    console.log(element);
     if(element.Id<=21){
       if(element.CorrectValue!=element.Respuesta){
         puntuacion+=10;
@@ -129,8 +114,6 @@ function CalcularResultats(array:Object[])
       let numero=element.Respuesta;
       let nombreSeparados = nombre.split('-');
       let numeroSeparados = numero.split('-');
-      console.log(nombreSeparados);
-      console.log(numeroSeparados);
       let posicio = 0;
       if (nombreSeparados[posicio] == numeroSeparados[posicio] && nombreSeparados[posicio + 1] == numeroSeparados[posicio + 1]){
         puntuacion += 0;
@@ -144,8 +127,6 @@ function CalcularResultats(array:Object[])
     }
   });
 }
-
-
 
 function Diagnostic()
 {
@@ -164,7 +145,6 @@ function Diagnostic()
 
     return diagnostic;
 }
-
 
 reload.addEventListener('click', ()=>{
   window.location.reload();
