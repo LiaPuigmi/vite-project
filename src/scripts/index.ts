@@ -1,8 +1,8 @@
 import '../style.css'
 import { Question } from './question.ts'
 
+//Variables:
 const {BASE_URL} = import.meta.env;
-
 const button=document.getElementById('next') as HTMLButtonElement;
 const reload=document.getElementById('reload') as HTMLButtonElement;
 let dropdown1 = document.getElementById('firstSelect') as HTMLSelectElement;
@@ -12,13 +12,12 @@ let imagen=document.getElementById('imagen') as HTMLInputElement;
 
 let value1='Nada';
 let value2='Nada';
-
 let count=0;
 let puntuacion=0;
 let solucion='Nada';
-
 let firstTime=true;
 
+//Questions:
 let question1=new Question(1,"1-2-grande.jpg","","1-2", false);
 let question2=new Question(2,"8.jpg","","8",true);
 let question3=new Question(3,"6-grande.jpg","","6",true);
@@ -61,9 +60,7 @@ dropdown2.addEventListener("change", function() {
  
 });
 
-
 button.addEventListener('click', ()=>{
-
   if(firstTime){
     dropdown1.style.display="flex";
     dropdown2.style.display="flex";
@@ -77,8 +74,6 @@ button.addEventListener('click', ()=>{
       }else{
           solucion=value2;
       } 
-      console.log('entro');
-      
       array.forEach((element: any) => {
           if(element.Id==count){
               imagen.src=`${BASE_URL}${element.Image}`; 
@@ -86,13 +81,10 @@ button.addEventListener('click', ()=>{
                 dropdown1.style.display="none"
               }else{
                 dropdown1.style.display="flex"
-              }
-              
+              } 
           }
           if(element.Id==(count-1)){
             element.Respuesta=solucion;
-              console.log(element)
-              console.log(count);
               if(count==26){
                 imagen.src=`${BASE_URL}/title.jpg`;
                 CalcularResultats(array);
@@ -101,23 +93,16 @@ button.addEventListener('click', ()=>{
                 dropdown1.style.display="none"
                 dropdown2.style.display="none"
                 diagnostico.style.display="flex";
-
                 diagnostico.innerHTML=Diagnostic();
-                console.log(puntuacion);
               }
           }
-          
       });
-
   }
 });
-
-
 
 function CalcularResultats(array:Object[])
 {
   array.forEach((element: any) => {
-    console.log(element);
     if(element.Id<=21){
       if(element.CorrectValue!=element.Respuesta){
         puntuacion+=10;
@@ -129,8 +114,6 @@ function CalcularResultats(array:Object[])
       let numero=element.Respuesta;
       let nombreSeparados = nombre.split('-');
       let numeroSeparados = numero.split('-');
-      console.log(nombreSeparados);
-      console.log(numeroSeparados);
       let posicio = 0;
       if (nombreSeparados[posicio] == numeroSeparados[posicio] && nombreSeparados[posicio + 1] == numeroSeparados[posicio + 1]){
         puntuacion += 0;
@@ -145,14 +128,7 @@ function CalcularResultats(array:Object[])
   });
 }
 
-<<<<<<< HEAD
 function Diagnostic(){
-=======
-
-
-function Diagnostic()
-{
->>>>>>> parent of 11c15fe (done)
     let diagnostic:string;
     if (puntuacion >= 0 && puntuacion <= 20) diagnostic = "Bona visió";
     else if (puntuacion > 20 && puntuacion <= 80) diagnostic = "Visió lleument afectada, possible daltonisme";
@@ -168,7 +144,6 @@ function Diagnostic()
 
     return diagnostic;
 }
-
 
 reload.addEventListener('click', ()=>{
   window.location.reload();
